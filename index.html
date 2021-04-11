@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Random Quote Machine</title>
+    <script>
+      const QUOTEBANK = [
+        {
+          quote: "We cannot change anything until we accept it. Condemnation does not liberate, it oppresses.",
+          author: "Carl Jung"
+        }, {
+          quote: "Your visions will become clear only when you can look into your own heart. Who looks outside, dreams; who looks inside, awakes.",
+          author: "Carl Jung"
+        }, {
+          quote: "Until you make the unconscious conscious, it will direct your life and you will call it fate.",
+          author: "Carl Jung"
+        }, {
+          quote: "The simple step of a courageous individual is not to take part in the lie. One word of truth outweighs the world.",
+          author: "Aleksandr I. Solzhenitsyn"
+        }, {
+          quote: "When you're cold, don't expect sympathy from someone who's warm.",
+          author: "Aleksandr I. Solzhenitsyn"
+        }, {
+          quote: "Pain and suffering are always inevitable for a large intelligence and a deep heart. The really great men must, I think, have great sadness on earth.",
+          author: "Fyodor Dostoevsky"
+        }, {
+          quote: "To go wrong in one's own way is better than to go right in someone else's.",
+          author: "Fyodor Dostoevsky"
+        }, {
+          quote: "I don't think that you have any insight whatsoever into your capacity for good until you have some well-developed insight into your capacity for evil.",
+          author: "Jordan B. Peterson"
+        }
+      ];
+
+      window.onload = init;
+      function init() {
+        generateQuote()
+      }
+
+      function generateQuote() {
+        let quoteSize = QUOTEBANK.length;
+        let randomIndex = Math.floor(Math.random() * quoteSize);
+        let randomQuoteData = QUOTEBANK[randomIndex];
+
+        let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="
+        //Add the quote
+        let quoteInApiFormat = randomQuoteData.quote.replace(/ /g,"%20")
+        twitterLink += quoteInApiFormat
+        // Add the author
+        let authorInApiFormat = randomQuoteData.author.replace(/ /g,"%20")
+        twitterLink += " - " + authorInApiFormat
+
+        document.getElementById("tweet-quote").href = twitterLink
+        document.getElementById("text").innerText = randomQuoteData.quote;
+        document.getElementById("author").innerText = randomQuoteData.author;
+
+      }
+      </script>
+
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row py-5">
+        <div class="col-md-8 offset-md-2"
+          <wrapper id="quote-box">
+            <div class="card">
+              <div class="card-header">
+                Quote
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p><div id="text"></div></p>
+                  <footer class="blockquote-footer" mx-auto><div id="author"></div></footer>
+                  <button id="new-quote" onClick="generateQuote()" class="btn btn-success">New Quote</button>
+                  <a  href="#" id="tweet-quote" target="_blank" class="btn btn-primary">Tweet Quote</a>
+                </blockquote>
+              </div>
+            </div>
+          </wrapper>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
